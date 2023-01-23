@@ -1,18 +1,19 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { useDispatch } from "react-redux";
+import { addTaskToServer } from "../slices/tasksSlice";
 
 const AddTask = () => {
-
-    
-
+    const dispatch = useDispatch()
     const [title,setTitle] = useState('')
     const [description,setDescription] = useState('')
-
-
     const addTask = (e) => {
         e.preventDefault()
         console.log({title,description})
+        dispatch(addTaskToServer({title,description}));
+        setTitle('');
+        setDescription('');
     }
   return (
     <section className="my-5">
